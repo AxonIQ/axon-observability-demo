@@ -1,0 +1,13 @@
+- name: 'Axoniq'
+  org_id: 1
+  folder: ''
+  type: 'file'
+  options:
+    folder: '/var/lib/grafana/dashboards'
+  # <bool> enable dashboard editing
+  editable: true
+  # <bool> allow updating provisioned dashboards from the UI
+  allowUiUpdates: true
+  disableDeletion: true
+  # <int> how often Grafana will scan for changed dashboards
+  updateIntervalSeconds: 10000

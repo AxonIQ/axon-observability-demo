@@ -1,0 +1,3 @@
+FROM prom/alertmanager
+
+ADD ./resources/alertmanager/alertmanager.yml /etc/prometheus/alertmanager.yml

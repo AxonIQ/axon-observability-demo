@@ -1,0 +1,14 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services'
+
+route:
+  receiver: 'slack_general'
+  group_by: [alertname]
+
+receivers:
+- name: 'slack_general'
+  slack_configs:
+    - api_url: https://hooks.slack.com/services/your/API/KEY #todo change this yo your slack API Key
+      channel: '#axon-alerts'
+      send_resolved: true
+      text: "Description: {{ .CommonAnnotations.description }}"

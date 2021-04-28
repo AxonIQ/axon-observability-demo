@@ -1,0 +1,28 @@
+groups:
+- name: promalerts
+  rules:
+
+  # Alert for any instance that is unreachable for >1 minute.
+  - alert: InstanceDown
+    expr: up == 0
+    for: 1m
+    annotations:
+        description: "{{ $labels.instance }} couldn't be reached for >1 minute"
+
+  - alert: DiskSpace
+    expr: min by (path) (disk_free_bytes) < 1000000000
+    for: 1m
+    annotations:
+        description: "{{ $value }} p ({{ $labels.instance }})."
+
+  - alert: ErrorsLogged
+    expr: sum by (job) ((increase(logback_events_total{level="error"}[5m]))) > 0
+    for: 15s
+    annotations:
+        description: "Errors logged on: {{ $labels.job }}! Check *logs* for more information>!"
+
+  - alert: WarningsLogged
+    expr: sum by (job) ((increase(logback_events_total{level="warn"}[1m]))) > 20
+    for: 15s
+    annotations:
+        description: "Many warnings (average: {{ $value }} during last 15s) logged on: {{ $labels.job }}! Check *logs* for more information>!"

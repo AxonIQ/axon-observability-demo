@@ -1,0 +1,8 @@
+FROM grafana/grafana:latest
+
+COPY ../resources/grafana/grafana.ini /etc/grafana/grafana.ini
+COPY ../resources/grafana/provisioning /etc/grafana/provisioning
+COPY ../resources/grafana/dashboards /var/lib/grafana/dashboards
+
+
+RUN ls -la /var/lib/grafana/dashboards*

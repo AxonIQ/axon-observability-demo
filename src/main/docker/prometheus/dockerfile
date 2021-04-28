@@ -1,0 +1,4 @@
+FROM prom/prometheus
+
+ADD ./resources/prometheus/prometheus.yml /etc/prometheus/prometheus.yml
+ADD ./resources/prometheus/alert.rules /etc/prometheus/alert.rules
