@@ -2,6 +2,11 @@ FROM openjdk:8-jre-alpine3.9
 
 RUN apk add --update ttf-dejavu fontconfig
 
-COPY ../docker/axon-server/axonserver.jar /axonserver-enterprise.jar
- 
-CMD ["java", "-jar", "/axonserver-enterprise.jar"]
+COPY ../docker/axon-server/axonserver.jar /axonserver/axonserver-enterprise.jar
+COPY ../docker/axon-server/axoniq.license /axonserver/axoniq.license
+COPY ../docker/axon-server/cluster-template.yml /axonserver/cluster-template.yml
+COPY ../docker/axon-server/axonserver.properties /axonserver/axonserver.properties
+
+WORKDIR /axonserver
+
+CMD ["java", "-jar", "/axonserver/axonserver-enterprise.jar"]

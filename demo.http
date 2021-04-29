@@ -1,12 +1,12 @@
 ###
-GET http://localhost:8080/send/commands/new-aggregate?count=100&delay=10&worktime=10000
+GET http://localhost:8080/send/commands/new-aggregate?count=3000&delay=200&worktime=200
 
 ###
-GET http://localhost:8080/send/commands/aggregate?count=500&delay=1000&worktime=100
+GET http://localhost:8080/send/commands/aggregate?count=3000&delay=1000&worktime=100
 
 ###
 
-GET http://localhost:8082/send/commands/aggregate?count=500&delay=1000&worktime=100
+GET http://localhost:8082/send/commands/aggregate?count=5000&delay=1000&worktime=100
 
 ###
 

@@ -78,29 +78,16 @@ services:
       dockerfile: ./docker/axon-server/dockerfile
     hostname: axonserver-enterprise-1
     environment:
-      - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/config/cluster-template.yml
-      - AXONIQ_LICENSE=/config/axoniq.license
-      - AXONIQ_AXONSERVER_EVENT_STORAGE=/eventstorage
-      - AXONIQ_AXONSERVER_SNAPSHOT_STORAGE=/eventstorage
-      - AXONIQ_AXONSERVER_CONTROLDB-PATH=/controldb
-      - AXONIQ_AXONSERVER_REPLICATION_LOG-STORAGE-FOLDER=/raft-log
-      - AXONIQ_AXONSERVER_NAME=axonserver-enterprise-1
-      - AXONIQ_AXONSERVER_HOSTNAME=axonserver-enterprise-1
+      - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/axonserver/cluster-template.yml
+      - AXONIQ_LICENSE=/axonserver/axoniq.license
       - SERVER_PORT=8024
       - AXONIQ_AXONSERVER_PORT=8124
-      - AXONIQ_AXONSERVER_REPLICATION_FLOW-BUFFER=50
-      - AXONIQ_AXONSERVER_REPLICATION_MAX-SNAPSHOT-CHUNKS-PER-BATCH=10
-      - AXONIQ_AXONSERVER_REPLICATION_MAX-ENTRIES-PER-BATCH=10
-      - LOGGING_FILE=/axon-server-logs/axonserver-enterprise-1.log
       - AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED=true
       - AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUS-ENABLED=true
     volumes:
-      - ./config:/config
-      - axonserver-enterprise-1-log:/raft-log
-      - axonserver-enterprise-1-eventstore:/eventstorage
-      - axonserver-enterprise-1-controldb:/controldb
-      - axonserver-logs:/axon-server-logs
-      - axonserver-enterprise-1-security:/security
+      - axonserver-enterprise-1-log:/axonserver/log
+      - axonserver-enterprise-1-events:/axonserver/events
+      - axonserver-enterprise-1-data:/axonserver/data
     ports:
       - '8024:8024'
       - '8124:8124'
@@ -115,29 +102,16 @@ services:
       dockerfile: ./docker/axon-server/dockerfile
     hostname: axonserver-enterprise-2
     environment:
-      - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/config/cluster-template.yml
-      - AXONIQ_LICENSE=/config/axoniq.license
-      - AXONIQ_AXONSERVER_EVENT_STORAGE=/eventstorage
-      - AXONIQ_AXONSERVER_SNAPSHOT_STORAGE=/eventstorage
-      - AXONIQ_AXONSERVER_CONTROLDB-PATH=/controldb
-      - AXONIQ_AXONSERVER_NAME=axonserver-enterprise-2
-      - AXONIQ_AXONSERVER_HOSTNAME=axonserver-enterprise-2
+      - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/axonserver/cluster-template.yml
+      - AXONIQ_LICENSE=/axonserver/axoniq.license
       - SERVER_PORT=8025
       - AXONIQ_AXONSERVER_PORT=8125
-      - AXONIQ_AXONSERVER_REPLICATION_FLOW-BUFFER=50
-      - AXONIQ_AXONSERVER_REPLICATION_MAX-SNAPSHOT-CHUNKS-PER-BATCH=10
-      - AXONIQ_AXONSERVER_REPLICATION_MAX-ENTRIES-PER-BATCH=10
-      - AXONIQ_AXONSERVER_REPLICATION_LOG-STORAGE-FOLDER=/raft-log
-      - LOGGING_FILE=/axon-server-logs/axonserver-enterprise-2.log
       - AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED=true
       - AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUS-ENABLED=true
     volumes:
-      - ./config:/config
-      - axonserver-enterprise-2-log:/raft-log
-      - axonserver-enterprise-2-eventstore:/eventstorage
-      - axonserver-enterprise-2-controldb:/controldb
-      - axonserver-logs:/axon-server-logs
-      - axonserver-enterprise-2-security:/security
+      - axonserver-enterprise-2-log:/axonserver/log
+      - axonserver-enterprise-2-events:/axonserver/events
+      - axonserver-enterprise-2-data:/axonserver/data
     ports:
       - '8025:8025'
       - '8125:8125'
@@ -152,29 +126,16 @@ services:
       dockerfile: ./docker/axon-server/dockerfile
     hostname: axonserver-enterprise-3
     environment:
-      - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/config/cluster-template.yml
-      - AXONIQ_LICENSE=/config/axoniq.license
-      - AXONIQ_AXONSERVER_EVENT_STORAGE=/eventstorage
-      - AXONIQ_AXONSERVER_SNAPSHOT_STORAGE=/eventstorage
-      - AXONIQ_AXONSERVER_CONTROLDB-PATH=/controldb
-      - AXONIQ_AXONSERVER_NAME=axonserver-enterprise-3
-      - AXONIQ_AXONSERVER_HOSTNAME=axonserver-enterprise-3
+      - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/axonserver/cluster-template.yml
+      - AXONIQ_LICENSE=/axonserver/axoniq.license
       - SERVER_PORT=8026
       - AXONIQ_AXONSERVER_PORT=8126
-      - AXONIQ_AXONSERVER_REPLICATION_FLOW-BUFFER=50
-      - AXONIQ_AXONSERVER_REPLICATION_MAX-SNAPSHOT-CHUNKS-PER-BATCH=10
-      - AXONIQ_AXONSERVER_REPLICATION_MAX-ENTRIES-PER-BATCH=10
-      - AXONIQ_AXONSERVER_REPLICATION_LOG-STORAGE-FOLDER=/raft-log
-      - LOGGING_FILE=/axon-server-logs/axonserver-enterprise-3.log
       - AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED=true
       - AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUS-ENABLED=true
     volumes:
-      - ./config:/config
-      - axonserver-enterprise-3-log:/raft-log
-      - axonserver-enterprise-3-eventstore:/eventstorage
-      - axonserver-enterprise-3-controldb:/controldb
-      - axonserver-logs:/axon-server-logs
-      - axonserver-enterprise-3-security:/security
+      - axonserver-enterprise-3-log:/axonserver/log
+      - axonserver-enterprise-3-events:/axonserver/events
+      - axonserver-enterprise-3-data:/axonserver/data
     ports:
       - '8026:8026'
       - '8126:8126'
@@ -185,18 +146,14 @@ services:
 
 volumes:
   axonserver-enterprise-1-log:
-  axonserver-enterprise-1-eventstore:
-  axonserver-enterprise-1-controldb:
+  axonserver-enterprise-1-events:
+  axonserver-enterprise-1-data:
   axonserver-enterprise-2-log:
-  axonserver-enterprise-2-eventstore:
-  axonserver-enterprise-2-controldb:
+  axonserver-enterprise-2-events:
+  axonserver-enterprise-2-data:
   axonserver-enterprise-3-log:
-  axonserver-enterprise-3-eventstore:
-  axonserver-enterprise-3-controldb:
-  axonserver-logs:
-  axonserver-enterprise-1-security:
-  axonserver-enterprise-2-security:
-  axonserver-enterprise-3-security:
+  axonserver-enterprise-3-events:
+  axonserver-enterprise-3-data:
 
 networks:
   axon-net:
