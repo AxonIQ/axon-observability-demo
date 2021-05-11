@@ -1,3 +1,7 @@
+# Introduction
+
+Please watch [full webinar](https://www.youtube.com/watch?v=bVJjZ9IS9pA) that explains all parts of this demo project.
+
 # Axon  monitoring
 
 Monitoring stack includes Prometheus, Grafana & Alert manager.
